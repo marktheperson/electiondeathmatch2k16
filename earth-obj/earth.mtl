@@ -1,0 +1,13 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl earth
+Ns 96.078431
+Ka 0.129412 0.066667 0.847059
+Kd 0.623529 0.674510 0.949020
+Ks 0.086667 0.078039 0.078039
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump earthspec1k.jpg
+map_Kd earth.jpg
