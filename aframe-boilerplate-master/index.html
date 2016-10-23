@@ -10,7 +10,7 @@
     <a-scene>
       <a-assets>
         <a-asset-item id="why-male-models" src="man/man.dae"></a-asset-item>
-        <a-asset-item id="globe" src="earth-dae/earth.dae"></a-asset-item>
+        <a-asset-item id="why-female-models" src="hillaryshaded.dae"></a-asset-item>
         <img id="htag" src="hillary_tagline.png">
         <img id="dtag" src="donald_tagline.png">
         <img id="hillary" src="hillary.png">
@@ -23,22 +23,21 @@
         <a-animation attribute="position" from="0 0 0" to="0 5.5 -6" delay="1000"
                      dur="1000"></a-animation>
       </a-image>
-
-      <!-- <a-entity id="model" position="0 1 -2">
+<!--
+      <a-entity id="model" position="0 1.25 -2">
         <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
                      easing="linear" repeat="indefinite"></a-animation>
-        <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
-                         src="#globe"></a-collada-model>
-        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+        <a-obj-model position="-.35 0 .55" rotation="0 -20 0" scale=".005 .005 .005"
+                         src="#woman-obj" mtl="#woman-mtl"></a-obj-model>
       </a-entity> -->
 
       <!-- Hillary Clinton placeholder model -->
-      <a-entity id="model" position="-3 -.25 -2">
-        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
-                     easing="linear" repeat="indefinite"></a-animation>
+      <a-entity id="model" position="3 -.25 -10">
+        <!-- <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation> -->
         <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
-                         src="#why-male-models"></a-collada-model>
-        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+                         src="#why-female-models"></a-collada-model>
+        <a-image src="#shadow2" rotation="-90 0 0" scale="0.15 0.15 0.15"></a-image>
       </a-entity>
 
       <!-- Donald Trump placeholder model -->
