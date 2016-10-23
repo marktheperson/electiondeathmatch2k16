@@ -10,7 +10,10 @@
   },
   "devDependencies": {
     "budo": "^7.0.0",
-    "ghpages": "0.0.3"
+    "ghpages": "0.0.3",
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5",
+    "twitter": "^1.2.5"
   },
   "keywords": [
     "aframe",

@@ -1,3 +1,0 @@
-# election deathmatch!!
-
-ugh
