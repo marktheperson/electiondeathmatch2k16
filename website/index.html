@@ -2,27 +2,50 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Election Deathmatch</title>
-    <meta name="description" content="Donald and Hillary fight to the death">
+    <title>Presidential Shitposting</title>
+    <meta name="description" content="all the glorious shitpost tweets from around the world">
     <script src="/dist/aframe.js"></script>
   </head>
   <body>
     <a-scene>
+
+    <!-- Assets -->
       <a-assets>
+<<<<<<< HEAD
+        <a-asset-item id="why-trump-models" src="img/trump.dae"></a-asset-item>
+        <a-asset-item id="why-female-models" src="img/clinton.dae"></a-asset-item>
+        <img id="htag" src="img/hillary_tagline.png">
+        <img id="dtag" src="img/donald_tagline.png">
+        <img id="hillary" src="img/hillary.png">
+        <img id="donald" src="img/donald.png">
+        <img id="headline" src="img/headline.png">
+        <img id="shadow2" src="img/radial-shadow-2.png">
+=======
         <a-asset-item id="why-trump-models" src="trump.dae"></a-asset-item>
         <a-asset-item id="why-female-models" src="clinton.dae"></a-asset-item>
+        <a-asset-item id="wrestle" src="arena2.dae"></a-asset-item>
         <img id="htag" src="hillary_tagline.png">
         <img id="dtag" src="donald_tagline.png">
         <img id="hillary" src="hillary.png">
         <img id="donald" src="donald.png">
         <img id="headline" src="headline.png">
         <img id="shadow2" src="radial-shadow-2.png">
+>>>>>>> origin/dev
       </a-assets>
 
-      <a-image id="headline" src="#headline" width="7" height="3" scale=".8 .8 .8">
+      <!-- Election Deathmatch -->
+<!--       <a-image id="headline" src="#headline" width="7" height="3" scale=".8 .8 .8">
         <a-animation attribute="position" from="0 0 0" to="0 5.5 -6" delay="1000"
                      dur="1000"></a-animation>
-      </a-image>
+      </a-image> -->
+
+      <a-entity id="model" position="0 -3.25 0">
+        <!-- <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation> -->
+        <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
+                         src="#wrestle"></a-collada-model>
+        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+      </a-entity>
 
       <!-- Hillary Clinton placeholder model -->
       <a-entity id="model" position="-3 -.25 -2">
@@ -46,6 +69,11 @@
       <a-curvedimage id="hillary-logo" src="#hillary" height="1.0" radius="5.7" position="0 2.6 0" theta-length="16"
                  rotation="0 210 0" scale="0.8 0.8 0.8">
       </a-curvedimage>
+
+
+
+      <div class="title"></div>
+
 
       <!-- Donald Trump logo -->
       <a-curvedimage id="donald-logo" src="#donald" height="1.0" radius="5.7" position="0 2.6 0" theta-length="16"
@@ -72,4 +100,140 @@
       <a-light type="ambient" color="#fff"></a-light>
     </a-scene>
   </body>
+  <style>
+
+.title {
+  position: absolute;
+  top: 500px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  width: 960px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+.tweet {
+  position: absolute;
+  left: 240px;
+  width: 480px;
+  text-align: center;
+}
+
+.twitter {
+  position: absolute;
+  left: 25px;
+  top: 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+canvas {
+    position: absolute;
+    z-index: 100;
+}
+
+</style>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/queue.v1.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+<script>
+    var width = 410,
+        height = 410;
+
+    var projection = d3.geo.orthographic()
+        .translate([width / 2, height / 2])
+        .scale(width / 2 - 20)
+        .clipAngle(90)
+        .precision(0.6);
+
+    var canvas = d3.select("body").append("canvas")
+        .attr("width", width)
+        .attr("height", height);
+
+    var c = canvas.node().getContext("2d");
+
+    var path = d3.geo.path()
+        .projection(projection)
+        .context(c);
+
+    var title = d3.select(".title");
+
+    queue()
+        .defer(d3.json, "public/world-110m.json")
+        .defer(d3.tsv, "public/world-country-names.tsv")
+        .await(ready);
+
+    function ready(error, world, names) {
+      if (error) throw error;
+
+      var globe = {type: "Sphere"},
+          land = topojson.feature(world, world.objects.land),
+          countries = topojson.feature(world, world.objects.countries).features,
+          borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; });
+
+      countries = countries.filter(function(d) {
+        return names.some(function(n) {
+          if (d.id == n.id) return d.name = n.name;
+        });
+      }).sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+      });
+
+      // Open up a socket to the website.
+      var socket = io({ "force new connection" : true });
+
+      // Yes, I know how ugly this is.
+      function makeHTML(tweet) {
+        return [
+          '<div class="user">',
+          '<a href="https://twitter.com/', tweet.user, '" target="_blank">', '@', tweet.user, '</a>',
+          '<h1>', tweet.placeName, '</h1>',
+          '<div class="tweet">',
+          '<a href="https://twitter.com/', tweet.user, '/status/', tweet.id, '" target="_blank">',
+          tweet.text, '</a>', '</div>'
+        ].join('');
+        console.log("user: " ,tweet.user, "place name: ", tweet.placeName, "tweet id: ", tweet.id, "text: ",tweet.text);
+      }
+
+      // And whenever you get a tweet message from the socket...
+      socket.on('tweet', function(tweet) {
+        console.log(tweet);
+        d3.transition()
+          .duration(1250)
+          // each tweet, make a new tweet
+          .each("start", function() {
+            title.html(makeHTML(tweet));
+          })
+          // rotate the globe
+          .tween("rotate", function() {
+            var p = tweet.latLong,
+                r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+            return function(t) {
+              // Rotate the earth so that the new point is front and center.
+              projection.rotate(r(t));
+              // Erase the canvas.
+              c.clearRect(0, 0, width, height);
+              // Fill in all the landmasses gray.
+              c.fillStyle = "#04B404", c.beginPath(), path(land), c.fill();
+              // Draw the country borders in white.
+              c.strokeStyle = "#fff", c.lineWidth = .5, c.beginPath(), path(borders), c.stroke();
+              // Draw the earth's circumference in black.
+              c.strokeStyle = "#000", c.lineWidth = 2, c.beginPath(), path(globe), c.stroke();
+              // Get the canvas-coordinates of the latLong point, and draw a circle there.
+              var center = projection(p);
+              c.strokeStyle = "#000", c.fillStyle = "#f00", c.beginPath(), c.arc(center[0], center[1], 5, 0, 2 * Math.PI, false), c.lineWidth = 2, c.fill(), c.stroke();
+            };
+          });
+      });
+    }
+
+    d3.select(self.frameElement).style("height", height + "px");
+</script>
 </html>
