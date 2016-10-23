@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Election Deathmatch</title>
+    <meta name="description" content="Donald and Hillary fight to the death">
+    <script src="/dist/aframe.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="why-male-models" src="man/man.dae"></a-asset-item>
+        <a-asset-item id="why-female-models" src="trillary.dae"></a-asset-item>
+        <img id="htag" src="hillary_tagline.png">
+        <img id="dtag" src="donald_tagline.png">
+        <img id="hillary" src="hillary.png">
+        <img id="donald" src="donald.png">
+        <img id="headline" src="headline.png">
+        <img id="shadow2" src="radial-shadow-2.png">
+      </a-assets>
+
+      <a-image id="headline" src="#headline" width="7" height="3" scale=".8 .8 .8">
+        <a-animation attribute="position" from="0 0 0" to="0 5.5 -6" delay="1000"
+                     dur="1000"></a-animation>
+      </a-image>
+<!--
+      <a-entity id="model" position="0 1.25 -2">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation>
+        <a-obj-model position="-.35 0 .55" rotation="0 -20 0" scale=".005 .005 .005"
+                         src="#woman-obj" mtl="#woman-mtl"></a-obj-model>
+      </a-entity> -->
+
+      <!-- Hillary Clinton placeholder model -->
+      <a-entity id="model" position="-3 -.25 -2">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation>
+        <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
+                         src="#why-female-models"></a-collada-model>
+        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+      </a-entity>
+      <!-- <a-entity id="model" position="-3 0 -2">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation>
+        <a-collada-model position="-.35 0 .55" rotation="0 -30 0" scale=".075 .075 .075"
+                         src="#why-female-models"></a-collada-model>
+        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+      </a-entity> -->
+
+      <!-- Donald Trump placeholder model -->
+      <a-entity id="model" position="3 -.25 -2">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation>
+        <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
+                         src="#why-male-models"></a-collada-model>
+        <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+      </a-entity>
+
+      <!-- Hillary Clinton logo -->
+      <a-curvedimage id="hillary-logo" src="#hillary" height="1.0" radius="5.7" position="0 2.6 0" theta-length="16"
+                 rotation="0 210 0" scale="0.8 0.8 0.8">
+      </a-curvedimage>
+
+      <!-- Donald Trump logo -->
+      <a-curvedimage id="donald-logo" src="#donald" height="1.0" radius="5.7" position="0 2.6 0" theta-length="16"
+                 rotation="0 130 0" scale="0.8 0.8 0.8">
+      </a-curvedimage>
+
+
+      <!-- Hillary placeholder text -->
+      <a-curvedimage id="hillary-fighteruii-text" src="#htag" radius="5.7"
+                     theta-length="18" height=".45" position="0 0.9 0" scale=".4 .4 .4">
+        <a-animation attribute="rotation" from="0 180 0" to="0 210 0" delay="750"
+                     dur="1000"></a-animation>
+      </a-curvedimage>
+
+      <!-- Donald placeholder text -->
+      <a-curvedimage id="donald-fighter-text" src="#dtag" radius="5.7"
+                     theta-length="18" height=".45" position="0 0.9 0" scale=".4 .4 .4">
+        <a-animation attribute="rotation" from="0 105 0" to="0 135 0" delay="750"
+                     dur="1000"></a-animation>
+      </a-curvedimage>
+
+      <a-sky color="#ECECEC"></a-sky>
+      <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+      <a-light type="ambient" color="#fff"></a-light>
+    </a-scene>
+  </body>
+</html>
