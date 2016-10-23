@@ -13,6 +13,7 @@
       <a-assets>
         <a-asset-item id="why-trump-models" src="trump.dae"></a-asset-item>
         <a-asset-item id="why-female-models" src="clinton.dae"></a-asset-item>
+        <a-asset-item id="why-bernie-models" src="alien.dae"></a-asset-item>
         <a-asset-item id="wrestle" src="arena2.dae"></a-asset-item>
         <img id="htag" src="hillary_tagline.png">
         <img id="dtag" src="donald_tagline.png">
@@ -43,6 +44,14 @@
         <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5"
                          src="#why-female-models"></a-collada-model>
         <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+      </a-entity>
+
+      <!-- bernie sanders placeholder model -->
+      <a-entity id="model" position="0 3.25 2">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="indefinite"></a-animation>
+        <a-collada-model position="-.35 0 .55" rotation="45 -90 180" scale="0.005 0.005 0.005"
+                         src="#why-bernie-models"></a-collada-model>
       </a-entity>
 
       <!-- Donald Trump placeholder model -->
@@ -89,8 +98,9 @@
       <a-light type="ambient" color="#fff"></a-light>
     </a-scene>
   </body>
-  <style>
 
+
+  <style>
 .title {
   position: absolute;
   top: 500px;
