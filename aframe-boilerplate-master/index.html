@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Shopping</title>
-    <meta name="description" content="Shopping - A-Frame">
-    <script src="../../../dist/aframe.js"></script>
+    <title>Election Deathmatch</title>
+    <meta name="description" content="Donald and Hillary fight to the death">
+    <script src="/dist/aframe.js"></script>
   </head>
   <body>
     <a-scene>
@@ -12,7 +12,8 @@
         <a-asset-item id="why-male-models" src="man/man.dae"></a-asset-item>
         <img id="fall" src="fall.png">
         <img id="goggles" src="goggles.png">
-        <img id="mozvr" src="mozvr.png">
+        <img id="hillary" src="hillary.png">
+        <img id="donald" src="donald.png">
         <img id="price" src="price.png">
         <img id="shadow2" src="radial-shadow-2.png">
         <img id="shoes" src="shoes.png">
@@ -37,22 +38,14 @@
       </a-entity>
 
       <!-- Hillary Clinton logo -->
-      <a-curvedimage id="mozvr-logo" src="#mozvr" radius="5.7" theta-length="36" height="1"
+      <a-curvedimage id="hillary-logo" src="#hillary" radius="5.7" theta-length="36" height="1"
                      position="0 2.6 -1" opacity="1">
         <a-animation attribute="rotation" from="0 10 0" to="0 200 0" delay="500"
                      dur="1000"></a-animation>
       </a-curvedimage>
 
-      <!-- <a-image id="mozvr-logo" src="#mozrvr" width="400" height="300" position="3 -.25 -2">
-      </a-image>
-
-      <a-image id="mozvr-logo" src="#mozvr" height="1" scale="0.2 0.2 0.2">
-        <a-animation attribute="position" from="0 2.8 -6" to="2.25 2.8 -6" delay="1000"
-                     dur="1000"></a-animation>
-      </a-image> -->
-
       <!-- Donald Trump logo -->
-      <!-- <a-curvedimage id="mozvr-logo" src="#mozvr" radius="5.7" theta-length="36" height="1"
+      <!-- <a-curvedimage id="donald-logo" src="#donald" radius="5.7" theta-length="36" height="1"
                      position="0 2.6 -1" opacity="1">
         <a-animation attribute="rotation" from="0 10 0" to="0 200 0" delay="500"
                      dur="1000"></a-animation>
@@ -83,11 +76,6 @@
         <a-animation attribute="rotation" from="0 180 0" to="0 130 0" delay="750"
                      dur="1000"></a-animation>
       </a-curvedimage>
-
-      <!-- <a-entity>
-        <a-cylinder position="0 0.5 0" radius="4" height="1.6" side="back" open-ended="true"
-                    color="#FFF"></a-cylinder>
-      </a-entity> -->
 
       <a-sky color="#ECECEC"></a-sky>
       <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
